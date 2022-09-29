@@ -29,5 +29,8 @@ public class Register {
     private String bank;
 
     @NotNull
-    private String type;
+    private String account;
+
+    @NotNull
+    private String accountType;
 }
