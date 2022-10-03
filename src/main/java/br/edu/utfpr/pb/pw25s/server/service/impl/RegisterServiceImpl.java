@@ -5,6 +5,8 @@ import br.edu.utfpr.pb.pw25s.server.repository.RegisterRepository;
 import br.edu.utfpr.pb.pw25s.server.service.RegisterService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RegisterServiceImpl implements RegisterService {
 
@@ -20,8 +22,8 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
     @Override
-    public Register findOne(Long id) {
-        return registerRepository.findById(id).orElse(null);
+    public List<Register> findAll() {
+        return registerRepository.findAll();
     }
 
     @Override

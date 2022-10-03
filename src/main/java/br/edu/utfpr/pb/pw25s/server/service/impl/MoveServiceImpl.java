@@ -5,6 +5,8 @@ import br.edu.utfpr.pb.pw25s.server.repository.MoveRepository;
 import br.edu.utfpr.pb.pw25s.server.service.MoveService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MoveServiceImpl implements MoveService {
 
@@ -20,8 +22,8 @@ public class MoveServiceImpl implements MoveService {
     }
 
     @Override
-    public Movement findOne(Long id) {
-        return moveRepository.findById(id).orElse(null);
+    public List<Movement> findAll() {
+        return moveRepository.findAll();
     }
 
     @Override
