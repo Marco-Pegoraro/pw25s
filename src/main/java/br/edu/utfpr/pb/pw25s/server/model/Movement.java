@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
 @Entity(name = "tb_movement")
@@ -27,7 +28,10 @@ public class Movement {
     @OneToOne
     private Register register;
 
-    @ManyToOne
-    private User user;
+    @Size(min = 2, max = 1024)
+    @Column(length = 1024)
+    private String description;
 
+    @NotNull
+    private Boolean type;
 }
