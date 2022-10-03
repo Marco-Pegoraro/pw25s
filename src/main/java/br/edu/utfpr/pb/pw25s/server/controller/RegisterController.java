@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("registerAcc")
+@RequestMapping("registers")
 public class RegisterController {
 
     private final RegisterService registerService;
@@ -25,7 +25,7 @@ public class RegisterController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public GenericResponse createRegister(@PathVariable @Valid Register register) {
+    public GenericResponse createRegister(@RequestBody @Valid Register register) {
         registerService.save(register);
         return new GenericResponse("Registro inserido com sucesso");
     }

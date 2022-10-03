@@ -24,9 +24,8 @@ public class Movement {
     @NotNull
     private BigDecimal value;
 
-    @NotNull
-    @OneToOne
-    private Register register;
+    @JoinColumn(name = "Register_id")
+    private Long moveAccount;
 
     @Size(min = 2, max = 1024)
     @Column(length = 1024)

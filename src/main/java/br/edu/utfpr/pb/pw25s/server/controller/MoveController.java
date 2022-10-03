@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("movement")
+@RequestMapping("movements")
 public class MoveController {
 
     private final MoveService moveService;
@@ -25,7 +25,7 @@ public class MoveController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public GenericResponse createMovement(@PathVariable @Valid Movement movement) {
+    public GenericResponse createMovement(@RequestBody @Valid Movement movement) {
         moveService.save(movement);
         return new GenericResponse("Movimentação salva com sucesso");
     }
