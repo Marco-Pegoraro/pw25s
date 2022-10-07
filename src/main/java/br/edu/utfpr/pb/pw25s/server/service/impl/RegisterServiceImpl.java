@@ -22,8 +22,18 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
     @Override
+    public Register findOne(Long id) {
+        return registerRepository.findById(id).orElse(null);
+    }
+
+    @Override
     public List<Register> findAll() {
         return registerRepository.findAll();
+    }
+
+    @Override
+    public List<Register> findByUserId(Long userId) {
+        return registerRepository.findAllByUserId(userId);
     }
 
     @Override

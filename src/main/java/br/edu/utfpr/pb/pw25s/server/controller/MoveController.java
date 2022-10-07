@@ -40,4 +40,14 @@ public class MoveController {
     public ResponseEntity<List<Movement>> findAll() {
         return ResponseEntity.ok(moveService.findAll());
     }
+
+    @GetMapping("{id}")
+    public ResponseEntity<Movement> findOne(@PathVariable Long id) {
+        return ResponseEntity.ok(moveService.findOne(id));
+    }
+
+    @GetMapping("registerMovement/{id}")
+    public ResponseEntity<List<Movement>> findAllByRegisterId(@PathVariable Long id) {
+        return ResponseEntity.ok(moveService.findAllByRegisterId(id));
+    }
 }

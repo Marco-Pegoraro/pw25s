@@ -27,7 +27,8 @@ public class Register {
 
     @NotNull
     @JoinColumn(name = "User_id")
-    private Long userIdentifier;
+    @ManyToOne
+    private User user;
 
     @NotNull
     private String account;

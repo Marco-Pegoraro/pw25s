@@ -8,6 +8,10 @@ public interface MoveService {
 
     Movement save(Movement movement);
 
+    Movement findOne(Long id);
+
+    List<Movement> findAllByRegisterId(Long accId);
+
     List<Movement> findAll();
 
     void delete(Long id);

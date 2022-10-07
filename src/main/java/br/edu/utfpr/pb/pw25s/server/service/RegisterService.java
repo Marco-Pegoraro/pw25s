@@ -8,7 +8,11 @@ public interface RegisterService {
 
     Register save(Register register);
 
+    Register findOne(Long id);
+
     List<Register> findAll();
+
+    List<Register> findByUserId(Long userId);
 
     void delete(Long id);
 

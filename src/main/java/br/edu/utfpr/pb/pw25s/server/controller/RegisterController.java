@@ -1,5 +1,6 @@
 package br.edu.utfpr.pb.pw25s.server.controller;
 
+import br.edu.utfpr.pb.pw25s.server.dto.UserDto;
 import br.edu.utfpr.pb.pw25s.server.model.Register;
 import br.edu.utfpr.pb.pw25s.server.service.RegisterService;
 import br.edu.utfpr.pb.pw25s.server.utils.GenericResponse;
@@ -39,6 +40,16 @@ public class RegisterController {
     @GetMapping
     public ResponseEntity<List<Register>> findAll() {
         return ResponseEntity.ok(registerService.findAll());
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<Register> findOne(@PathVariable Long id) {
+        return ResponseEntity.ok(registerService.findOne(id));
+    }
+
+    @GetMapping("/userRegister/{id}")
+    public ResponseEntity<List<Register>> findAllByUserId(@PathVariable Long id) {
+        return ResponseEntity.ok(registerService.findByUserId(id));
     }
 
 }

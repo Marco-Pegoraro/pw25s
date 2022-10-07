@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity(name = "tb_movement")
 @Data
@@ -25,11 +26,15 @@ public class Movement {
     private BigDecimal value;
 
     @JoinColumn(name = "Register_id")
-    private Long moveAccount;
+    @ManyToOne
+    private Register register;
 
     @Size(min = 2, max = 1024)
     @Column(length = 1024)
     private String description;
+
+    @NotNull
+    private LocalDate date;
 
     @NotNull
     private Boolean type;

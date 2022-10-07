@@ -22,6 +22,16 @@ public class MoveServiceImpl implements MoveService {
     }
 
     @Override
+    public Movement findOne(Long id) {
+        return moveRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Movement> findAllByRegisterId(Long accId) {
+        return moveRepository.findAllByRegisterId(accId);
+    }
+
+    @Override
     public List<Movement> findAll() {
         return moveRepository.findAll();
     }
