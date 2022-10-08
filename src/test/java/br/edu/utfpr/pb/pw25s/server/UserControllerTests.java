@@ -40,6 +40,24 @@ public class UserControllerTests {
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
     }
 
+    @Test
+    public void postUser_whenUserIsValid_userSavedToDatabase() {
+        User user = createValidUser();
+
+        ResponseEntity<Object> response =
+                testRestTemplate.postForEntity("/users", user, Object.class);
+        assertThat( userRepository.count() ).isEqualTo(1);
+    }
+
+    @Test
+    public void postUser_whenUserHasNullUsername_receiveBadRequest() {
+        User user = createValidUser();
+        user.setUsername(null);
+        ResponseEntity<Object> response =
+                testRestTemplate.postForEntity("/users", user, Object.class);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+    }
+
     private User createValidUser() {
         User user = new User();
         user.setUsername("Douglas");
