@@ -1,5 +1,6 @@
 package br.edu.utfpr.pb.pw25s.server.controller;
 
+import br.edu.utfpr.pb.pw25s.server.dto.MovementDto;
 import br.edu.utfpr.pb.pw25s.server.model.Movement;
 import br.edu.utfpr.pb.pw25s.server.service.MoveService;
 import br.edu.utfpr.pb.pw25s.server.utils.GenericResponse;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("movements")
@@ -47,7 +49,15 @@ public class MoveController {
     }
 
     @GetMapping("registerMovement/{id}")
-    public ResponseEntity<List<Movement>> findAllByRegisterId(@PathVariable Long id) {
-        return ResponseEntity.ok(moveService.findAllByRegisterId(id));
+    public ResponseEntity<List<MovementDto>> findAllByRegisterId(@PathVariable Long id) {
+        return ResponseEntity.ok(
+                moveService.findAllByRegisterId(id).stream()
+                        .map(this::convertEntityToDto)
+                        .collect(Collectors.toList())
+        );
+    }
+
+    private MovementDto convertEntityToDto(Movement movement) {
+        return modelMapper.map(movement, MovementDto.class);
     }
 }

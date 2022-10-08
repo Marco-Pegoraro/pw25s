@@ -1,5 +1,6 @@
 package br.edu.utfpr.pb.pw25s.server.controller;
 
+import br.edu.utfpr.pb.pw25s.server.dto.RegisterDto;
 import br.edu.utfpr.pb.pw25s.server.dto.UserDto;
 import br.edu.utfpr.pb.pw25s.server.model.Register;
 import br.edu.utfpr.pb.pw25s.server.service.RegisterService;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("registers")
@@ -48,8 +50,17 @@ public class RegisterController {
     }
 
     @GetMapping("/userRegister/{id}")
-    public ResponseEntity<List<Register>> findAllByUserId(@PathVariable Long id) {
-        return ResponseEntity.ok(registerService.findByUserId(id));
+    public ResponseEntity<List<RegisterDto>> findAllByUserId(@PathVariable Long id) {
+        return ResponseEntity.ok(
+                registerService.findByUserId(id)
+                        .stream()
+                        .map(this::convertEntityToDto)
+                        .collect(Collectors.toList())
+        );
+    }
+
+    private RegisterDto convertEntityToDto(Register register) {
+        return modelMapper.map(register, RegisterDto.class);
     }
 
 }
