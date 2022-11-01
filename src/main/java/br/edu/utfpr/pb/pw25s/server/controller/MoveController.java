@@ -39,13 +39,17 @@ public class MoveController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Movement>> findAll() {
-        return ResponseEntity.ok(moveService.findAll());
+    public ResponseEntity<List<MovementDto>> findAll() {
+        return ResponseEntity.ok(
+                moveService.findAll().stream()
+                        .map(this::convertEntityToDto)
+                        .collect(Collectors.toList())
+        );
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Movement> findOne(@PathVariable Long id) {
-        return ResponseEntity.ok(moveService.findOne(id));
+    public ResponseEntity<MovementDto> findOne(@PathVariable Long id) {
+        return ResponseEntity.ok(convertEntityToDto(moveService.findOne(id)));
     }
 
     @GetMapping("registerMovement/{id}")

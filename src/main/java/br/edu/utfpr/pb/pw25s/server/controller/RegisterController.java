@@ -40,13 +40,18 @@ public class RegisterController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Register>> findAll() {
-        return ResponseEntity.ok(registerService.findAll());
+    public ResponseEntity<List<RegisterDto>> findAll() {
+        return ResponseEntity.ok(
+                registerService.findAll()
+                        .stream()
+                        .map(this::convertEntityToDto)
+                        .collect(Collectors.toList())
+        );
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Register> findOne(@PathVariable Long id) {
-        return ResponseEntity.ok(registerService.findOne(id));
+    public ResponseEntity<RegisterDto> findOne(@PathVariable Long id) {
+        return ResponseEntity.ok(convertEntityToDto(registerService.findOne(id)));
     }
 
     @GetMapping("/userRegister/{id}")
@@ -62,5 +67,4 @@ public class RegisterController {
     private RegisterDto convertEntityToDto(Register register) {
         return modelMapper.map(register, RegisterDto.class);
     }
-
 }
