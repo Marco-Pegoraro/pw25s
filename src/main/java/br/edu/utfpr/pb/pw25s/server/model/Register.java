@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity(name = "tb_register")
@@ -20,9 +21,11 @@ public class Register {
     private Long id;
 
     @NotNull
+    @NotEmpty
     private String agency;
 
     @NotNull
+    @NotEmpty
     private String bank;
 
     @NotNull
@@ -31,8 +34,10 @@ public class Register {
     private User user;
 
     @NotNull
+    @NotEmpty
     private String account;
 
     @NotNull
+    @NotEmpty
     private String accountType;
 }
