@@ -1,8 +1,11 @@
 package br.edu.utfpr.pb.pw25s.server.service.impl;
 
 import br.edu.utfpr.pb.pw25s.server.model.Register;
+import br.edu.utfpr.pb.pw25s.server.model.User;
 import br.edu.utfpr.pb.pw25s.server.repository.RegisterRepository;
 import br.edu.utfpr.pb.pw25s.server.service.RegisterService;
+import br.edu.utfpr.pb.pw25s.server.service.UserService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,13 +15,18 @@ public class RegisterServiceImpl implements RegisterService {
 
     private final RegisterRepository registerRepository;
 
-    public RegisterServiceImpl(RegisterRepository registerRepository) {
+    private final UserService userService;
+
+    public RegisterServiceImpl(RegisterRepository registerRepository, UserService userService) {
         this.registerRepository = registerRepository;
+        this.userService = userService;
     }
 
     @Override
     public Register save(Register register) {
-        //register.setUser();
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userService.findByUsername(principal.toString());
+        register.setUser(user);
         return registerRepository.save(register);
     }
 

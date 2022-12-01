@@ -28,7 +28,6 @@ public class Register {
     @NotEmpty
     private String bank;
 
-    @NotNull
     @JoinColumn(name = "User_id")
     @ManyToOne
     private User user;
