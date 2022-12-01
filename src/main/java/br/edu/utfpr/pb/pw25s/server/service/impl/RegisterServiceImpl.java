@@ -18,6 +18,7 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Override
     public Register save(Register register) {
+        //register.setUser();
         return registerRepository.save(register);
     }
 

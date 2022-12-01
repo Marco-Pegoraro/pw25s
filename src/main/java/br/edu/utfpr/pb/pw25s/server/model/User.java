@@ -1,5 +1,6 @@
 package br.edu.utfpr.pb.pw25s.server.model;
 
+import br.edu.utfpr.pb.pw25s.server.validation.UniqueUsername;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,6 +30,7 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @UniqueUsername
     @NotNull
     @Size(min = 4)
     private String username;

@@ -35,6 +35,11 @@ public class UserController {
         return ResponseEntity.ok( convertEntityToDto(userService.findOne(id)) );
     }
 
+    @GetMapping("/findUser/{username}")
+    public ResponseEntity<UserDto> findOneByName(@PathVariable String username) {
+        return ResponseEntity.ok(convertEntityToDto(userService.findByUsername(username)));
+    }
+
     @DeleteMapping("{id}")
     public GenericResponse delete(@PathVariable Long id) {
         userService.delete(id);
