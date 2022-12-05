@@ -41,7 +41,10 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
     @Override
-    public List<Register> findByUserId(Long userId) {
+    public List<Register> findByUserId() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userService.findByUsername(principal.toString());
+        Long userId = user.getId();
         return registerRepository.findAllByUserId(userId);
     }
 

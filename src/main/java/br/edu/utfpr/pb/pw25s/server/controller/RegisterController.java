@@ -54,10 +54,10 @@ public class RegisterController {
         return ResponseEntity.ok(convertEntityToDto(registerService.findOne(id)));
     }
 
-    @GetMapping("/userRegister/{id}")
-    public ResponseEntity<List<RegisterDto>> findAllByUserId(@PathVariable Long id) {
+    @GetMapping("/userRegister")
+    public ResponseEntity<List<RegisterDto>> findAllByUser() {
         return ResponseEntity.ok(
-                registerService.findByUserId(id)
+                registerService.findByUserId()
                         .stream()
                         .map(this::convertEntityToDto)
                         .collect(Collectors.toList())

@@ -12,7 +12,7 @@ public interface RegisterService {
 
     List<Register> findAll();
 
-    List<Register> findByUserId(Long userId);
+    List<Register> findByUserId();
 
     void delete(Long id);
 
