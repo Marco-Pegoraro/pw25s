@@ -21,9 +21,11 @@ public class MovementDto {
     private String description;
 
     @NotNull
-    private LocalDate date;
+    private String date;
 
     @NotNull
-    private Boolean type;
+    private String type;
+
+    private RegisterDto register;
 
 }

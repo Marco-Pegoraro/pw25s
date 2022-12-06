@@ -52,10 +52,10 @@ public class MoveController {
         return ResponseEntity.ok(convertEntityToDto(moveService.findOne(id)));
     }
 
-    @GetMapping("registerMovement/{id}")
-    public ResponseEntity<List<MovementDto>> findAllByRegisterId(@PathVariable Long id) {
+    @GetMapping("userMovement")
+    public ResponseEntity<List<MovementDto>> findAllByUser() {
         return ResponseEntity.ok(
-                moveService.findAllByRegisterId(id).stream()
+                moveService.findAllByUser().stream()
                         .map(this::convertEntityToDto)
                         .collect(Collectors.toList())
         );

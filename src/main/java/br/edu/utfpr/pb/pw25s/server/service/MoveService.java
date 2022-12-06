@@ -10,7 +10,7 @@ public interface MoveService {
 
     Movement findOne(Long id);
 
-    List<Movement> findAllByRegisterId(Long accId);
+    List<Movement> findAllByUser();
 
     List<Movement> findAll();
 

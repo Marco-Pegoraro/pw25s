@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface MoveRepository extends JpaRepository<Movement, Long> {
 
-    List<Movement> findAllByRegisterId(Long accId);
+    List<Movement> findAllByUserId(Long accId);
 
 }

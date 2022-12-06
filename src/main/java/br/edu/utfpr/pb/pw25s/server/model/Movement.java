@@ -29,11 +29,16 @@ public class Movement {
     @ManyToOne
     private Register register;
 
+    @JoinColumn(name = "User_id")
+    @ManyToOne
+    private User user;
+
     @Size(min = 2, max = 1024)
     @Column(length = 1024)
     private String description;
 
-    private LocalDate date;
+    @NotNull
+    private String date;
 
     @NotNull
     private String type;
