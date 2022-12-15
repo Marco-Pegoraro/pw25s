@@ -15,6 +15,9 @@ public class MovementDto {
     @NotNull
     private BigDecimal value;
 
+    @NotNull
+    private BigDecimal paidValue;
+
     @Size(min = 2, max = 1024)
     @Column(length = 1024)
     private String description;

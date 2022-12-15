@@ -10,7 +10,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 @Entity(name = "tb_movement")
 @Data
@@ -25,6 +24,9 @@ public class Movement {
 
     @NotNull
     private BigDecimal value;
+
+    @NotNull
+    private BigDecimal paidValue;
 
     @JoinColumn(name = "Register_id")
     @ManyToOne
