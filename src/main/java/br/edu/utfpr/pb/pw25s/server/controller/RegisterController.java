@@ -1,7 +1,6 @@
 package br.edu.utfpr.pb.pw25s.server.controller;
 
 import br.edu.utfpr.pb.pw25s.server.dto.RegisterDto;
-import br.edu.utfpr.pb.pw25s.server.dto.UserDto;
 import br.edu.utfpr.pb.pw25s.server.model.Register;
 import br.edu.utfpr.pb.pw25s.server.service.RegisterService;
 import br.edu.utfpr.pb.pw25s.server.utils.GenericResponse;
